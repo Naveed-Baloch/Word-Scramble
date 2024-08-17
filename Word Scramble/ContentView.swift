@@ -53,6 +53,7 @@ struct ContentView: View {
             if let startWords = try? String(contentsOf: startWordsURL) {
                 
                 let allWords = startWords.components(separatedBy: "\n")
+                usedWords = []
                 rootWord = allWords.randomElement() ?? "silkworm"
                 return
             }
@@ -70,7 +71,7 @@ struct ContentView: View {
             return
         }
 
-        guard isPossible(word: answer) else {
+        guard answer.isPossible(rootWord: rootWord) else {
             wordError(title: "Word not possible", message: "You can't spell that word from '\(rootWord)'!")
             return
         }
@@ -120,6 +121,23 @@ struct ContentView: View {
         errorMessage = message
         showingError = true
     }
+}
+
+extension String {
+    
+    func isPossible(rootWord: String) -> Bool {
+        var tempWord = rootWord
+        let word = self
+        for letter in word {
+            if let pos = tempWord.firstIndex(of: letter) {
+                tempWord.remove(at: pos)
+            } else {
+                return false
+            }
+        }
+        return true
+    }
+    
 }
 
 #Preview {
