@@ -26,7 +26,7 @@ WordScramble is a word game built using Swift and SwiftUI. The game challenges p
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/yourusername/WordScramble.git
+    git clone https://github.com/naveed-baloch/WordScramble.git
     ```
 2. Open the project in Xcode:
     ```sh
